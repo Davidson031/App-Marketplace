@@ -1,5 +1,6 @@
 import 'package:shop/models/product.dart';
 
+
 final dummyProducts = [
     Product(
       id: 'p1',
