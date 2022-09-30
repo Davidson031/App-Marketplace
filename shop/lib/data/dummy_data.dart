@@ -4,7 +4,7 @@ import 'package:shop/models/product.dart';
 final dummyProducts = [
     Product(
       id: 'p1',
-      title: 'Red Shirt',
+      name: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
       price: 29.99,
       imageUrl:
@@ -12,7 +12,7 @@ final dummyProducts = [
     ),
     Product(
       id: 'p2',
-      title: 'Trousers',
+      name: 'Trousers',
       description: 'A nice pair of trousers.',
       price: 59.99,
       imageUrl:
@@ -20,7 +20,7 @@ final dummyProducts = [
     ),
     Product(
       id: 'p3',
-      title: 'Yellow Scarf',
+      name: 'Yellow Scarf',
       description: 'Warm and cozy - exactly what you need for the winter.',
       price: 19.99,
       imageUrl:
@@ -28,7 +28,7 @@ final dummyProducts = [
     ),
     Product(
       id: 'p4',
-      title: 'A Pan',
+      name: 'A Pan',
       description: 'Prepare any meal you want.',
       price: 49.99,
       imageUrl:

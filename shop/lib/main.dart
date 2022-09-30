@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
           ),
           home: ProductsOverviewPage(),
           routes: { 
-            //AppRoutes.PRODUCT_DETAIL: (ctx) => CounterPage(),
             AppRoutes.PRODUCT_DETAIL: (contexto) => ProductDetailPage(),
           },
         ),
