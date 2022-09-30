@@ -2,6 +2,9 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../components/badge.dart';
+import '../models/cart.dart';
 import '../models/product.dart';
 import 'package:shop/components/product_item.dart';
 import 'package:shop/providers/counter.dart';
@@ -16,7 +19,6 @@ class ProductsOverviewPage extends StatefulWidget {
 }
 
 class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
-
   bool _showFavoriteOnly = false;
 
   @override
@@ -40,12 +42,22 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
             onSelected: (FiltroOpcoes f) {
               setState(() {
                 if (f == FiltroOpcoes.Favoritos) {
-                  _showFavoriteOnly = true;   
+                  _showFavoriteOnly = true;
                 } else {
                   _showFavoriteOnly = false;
                 }
               });
             },
+          ),
+          Consumer<Cart>(
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.shopping_cart),
+            ),
+            builder: (context, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
           ),
         ],
       ),
