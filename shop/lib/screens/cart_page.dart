@@ -64,7 +64,7 @@ class CartPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (ctx, i) => CartItemWidget(cartItem: items[i]),
+              itemBuilder: (ctx, i) => CartItemWidget(items[i]),
               itemCount: items.length,
             ),
           ),
