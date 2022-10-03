@@ -5,15 +5,16 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
+import '../components/cart_item.dart';
 import '../models/cart.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-  final Cart cart = Provider.of(context);
+    final Cart cart = Provider.of(context);
+    final items = cart.items.values.toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +46,7 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
@@ -56,6 +57,12 @@ class CartPage extends StatelessWidget {
                   )
                 ],
               ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (ctx, i) => CartItemWidget(cartItem : items[i]),
+              itemCount: items.length,
             ),
           ),
         ],
