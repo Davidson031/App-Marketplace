@@ -10,6 +10,7 @@ import 'package:shop/components/product_item.dart';
 import 'package:shop/providers/counter.dart';
 import '../components/product_grid.dart';
 import '../models/product_list.dart';
+import '../utils/app_routes.dart';
 
 enum FiltroOpcoes { Favoritos, Todos }
 
@@ -23,6 +24,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Meu Marketplace'),
@@ -51,7 +53,9 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           ),
           Consumer<Cart>(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.CART);
+              },
               icon: Icon(Icons.shopping_cart),
             ),
             builder: (context, cart, child) => Badge(
