@@ -23,9 +23,12 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            margin: const EdgeInsets.all(25),
+            margin: const EdgeInsets.all(15),
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 25,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -61,7 +64,7 @@ class CartPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (ctx, i) => CartItemWidget(cartItem : items[i]),
+              itemBuilder: (ctx, i) => CartItemWidget(cartItem: items[i]),
               itemCount: items.length,
             ),
           ),
