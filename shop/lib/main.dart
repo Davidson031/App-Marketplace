@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:provider/provider.dart';
+import 'package:shop/models/order_list.dart';
 import 'models/cart.dart';
 import 'models/product_list.dart';
 import 'providers/counter.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => OrderList(),
         ),
       ],
       child: MaterialApp(
