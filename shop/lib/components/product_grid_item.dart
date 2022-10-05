@@ -11,7 +11,7 @@ import 'package:shop/utils/app_routes.dart';
 
 import '../models/cart.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
@@ -40,7 +40,7 @@ class ProductItem extends StatelessWidget {
             onPressed: () {
               carrinho.addItem(product);
             },
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             color: Theme.of(context).colorScheme.secondary,
           ),
         ),

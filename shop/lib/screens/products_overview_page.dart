@@ -7,7 +7,7 @@ import 'package:shop/components/app_drawer.dart';
 import '../components/badge.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
-import 'package:shop/components/product_item.dart';
+import 'package:shop/components/product_grid_item.dart';
 import 'package:shop/providers/counter.dart';
 import '../components/product_grid.dart';
 import '../models/product_list.dart';
