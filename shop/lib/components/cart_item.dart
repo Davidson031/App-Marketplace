@@ -27,8 +27,35 @@ class CartItemWidget extends StatelessWidget {
           size: 40,
         ),
       ),
+      confirmDismiss: (_) {
+        return showDialog<bool>(
+          context: context,
+          builder: (ctx){
+            return AlertDialog(
+              title: const Text('Tem Certeza?'),
+              content: const Text('Deseja remover o item do carrinho?'),
+              actions: [
+                TextButton(
+                  onPressed: (){
+                    Navigator.of(ctx).pop(false);
+                  }, 
+                  child: Text('Não')
+                ),
+                TextButton(
+                  onPressed: (){
+                    Navigator.of(ctx).pop(true);
+                  }, 
+                  child: Text('Sim')
+                ),
+                
+              ],
+            );
+          },
+        );
+      },
       onDismissed: (_) {
-        Provider.of<Cart>(context, listen: false).removeItem(cartItem.productId);
+        Provider.of<Cart>(context, listen: false)
+            .removeItem(cartItem.productId);
       },
       child: Card(
         margin: const EdgeInsets.symmetric(
@@ -57,4 +84,3 @@ class CartItemWidget extends StatelessWidget {
     );
   }
 }
-
