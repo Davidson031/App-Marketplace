@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
+import 'package:shop/components/product_item.dart';
 
 import '../models/product_list.dart';
 
@@ -23,7 +24,12 @@ class ProductsPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: produtos.itemsCount,
           itemBuilder: (ctx, i){
-            return Text(produtos.items[i].name);
+            return Column(
+              children: [
+                ProductItem(produto: produtos.items[i]),
+                const Divider(),
+              ],
+            ); 
           },
         ),
       ),
