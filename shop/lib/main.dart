@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:provider/provider.dart';
 import 'package:shop/models/order_list.dart';
 import 'package:shop/screens/orders_page.dart';
+import 'package:shop/screens/product_form_page.dart';
 import 'package:shop/screens/products_page.dart';
 import 'models/cart.dart';
 import 'models/product_list.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.CART: (contexto) => CartPage(),
             AppRoutes.ORDERS: (contexto) => OrdersPage(),
             AppRoutes.PRODUCTS: (contexto) => ProductsPage(),
+            AppRoutes.PRODUCT_FORM: (contexto) => ProductFormPage(),
           },
         ),
     );

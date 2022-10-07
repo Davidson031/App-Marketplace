@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
 import 'package:shop/components/product_item.dart';
+import 'package:shop/utils/app_routes.dart';
 
 import '../models/product_list.dart';
 
@@ -17,6 +18,12 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gerenciar Produtos'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add), 
+            onPressed: () => Navigator.of(context).pushNamed(AppRoutes.PRODUCT_FORM)
+            ),
+        ],
       ),
       drawer: AppDrawer(),
       body: Padding(
