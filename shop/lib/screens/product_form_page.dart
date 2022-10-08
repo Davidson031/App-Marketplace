@@ -16,8 +16,6 @@ class ProductFormPage extends StatefulWidget {
 
 class _ProductFormPageState extends State<ProductFormPage> {
   
-  final _priceFocus = FocusNode();
-  final _descriptionFocus = FocusNode();
   final _urlFocus = FocusNode();
   final _imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -33,8 +31,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
   @override
   void dispose() {
     super.dispose();
-    _priceFocus.dispose();
-    _descriptionFocus.dispose();
     _urlFocus.dispose();
     _urlFocus.removeListener(updateImage);
   }
@@ -54,7 +50,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
       price: _formData['preco'] as double,
       imageUrl: _formData['url'] as String, 
       isFavorite: false,
-
     );
 
   }
