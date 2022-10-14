@@ -28,11 +28,11 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ProductList>(context, listen: false).loadProducts().then(
-          (value) => setState(() {
-            _isLoading = false;
-          }),
-        );
+    Provider.of<ProductList>(context, listen: false)
+        .loadProducts()
+        .then((value) => setState(() {
+              _isLoading = false;
+            }));
   }
 
   @override
