@@ -1,15 +1,14 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/product.dart';
-import 'package:shop/data/dummy_data.dart';
 
 class ProductList with ChangeNotifier {
-  final List<Product> _items = dummyProducts;
+  final List<Product> _items = [];
 
-  final _baseUrl = 'https://shop-776fc-default-rtdb.firebaseio.com';
+  final _url = 'https://shop-776fc-default-rtdb.firebaseio.com/products.json';
 
   List<Product> get items => [..._items];
 
@@ -19,9 +18,35 @@ class ProductList with ChangeNotifier {
     return _items.length;
   }
 
-  Future<void> addProductToList(Product product) {
-      final future = http.post(
-      Uri.parse('$_baseUrl/products.json'),
+  Future<void> loadProducts() async {
+
+    _items.clear();
+    
+    final response = await http.get(Uri.parse(_url));
+
+    if(response.body =='null') return;
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    data.forEach((productId, productData) {
+      _items.add(
+        Product(
+          id: productId,
+          name: productData['name'],
+          description: productData['description'],
+          price: productData['price'],
+          imageUrl: productData['imageUrl'],
+          isFavorite: productData['isFavorite'],
+        ),
+      );
+    });
+
+    notifyListeners();
+  }
+
+  Future<void> addProductToList(Product product) async {
+    final response = await http.post(
+      Uri.parse(_url),
       body: jsonEncode({
         "name": product.name,
         "description": product.description,
@@ -30,20 +55,16 @@ class ProductList with ChangeNotifier {
         "isFavorite": product.isFavorite,
       }),
     );
-    
-    
-    return future.then<void>((response) {
-      final id = jsonDecode(response.body)['name'];
-      _items.add(Product(
+
+    final id = jsonDecode(response.body)['name'];
+    _items.add(Product(
         id: id,
         name: product.name,
         description: product.description,
         price: product.price,
         imageUrl: product.imageUrl,
-        isFavorite: product.isFavorite
-      ));
-      notifyListeners();
-    });
+        isFavorite: product.isFavorite));
+    notifyListeners();
   }
 
   Future<void> updateProduct(Product product) {
