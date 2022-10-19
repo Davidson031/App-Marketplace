@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
             ),
             fontFamily: 'Lato',
           ),
-          //home: ProductsOverviewPage(),
+          home: ProductsOverviewPage(),
           routes: { 
-            AppRoutes.HOME: (contexto) => ProductsOverviewPage(),
+            //AppRoutes.HOME: (contexto) => ProductsOverviewPage(),
             AppRoutes.PRODUCT_DETAIL: (contexto) => ProductDetailPage(),
             AppRoutes.CART: (contexto) => CartPage(),
             AppRoutes.ORDERS: (contexto) => OrdersPage(),
