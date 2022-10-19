@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,8 +19,9 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final produtos = Provider.of<ProductList>(context);
     
+    final produtos = Provider.of<ProductList>(context); 
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gerenciar Produtos'),

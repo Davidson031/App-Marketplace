@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:developer';
+
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -28,15 +30,20 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ProductList>(context, listen: false)
-        .loadProducts()
-        .then((value) => setState(() {
-              _isLoading = false;
-            }));
+    Provider.of<ProductList>(
+      context,
+      listen: false,
+    ).loadProducts().then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
+  
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Meu Marketplace'),

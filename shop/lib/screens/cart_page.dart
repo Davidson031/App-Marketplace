@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,6 +10,7 @@ import 'package:shop/models/order_list.dart';
 
 import '../components/cart_item.dart';
 import '../models/cart.dart';
+import '../models/product_list.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -51,17 +54,7 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  TextButton(
-                    onPressed: () {
-                      Provider.of<OrderList>(context, listen: false).addOrder(cart);
-                      cart.clear();
-                    },
-                    style: TextButton.styleFrom(
-                        textStyle: const TextStyle(
-                      color: Colors.purple,
-                    )),
-                    child: const Text('COMPRAR'),
-                  )
+                  CartButton(cart: cart),
                 ],
               ),
             ),
@@ -75,5 +68,49 @@ class CartPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class CartButton extends StatefulWidget {
+  const CartButton({
+    Key? key,
+    required this.cart,
+  }) : super(key: key);
+
+  final Cart cart;
+
+  @override
+  State<CartButton> createState() => _CartButtonState();
+}
+
+class _CartButtonState extends State<CartButton> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return _isLoading
+        ? CircularProgressIndicator()
+        : TextButton(
+            onPressed: widget.cart.itemsCount == 0
+                ? null
+                : () async {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    await Provider.of<OrderList>(context, listen: false)
+                        .addOrder(widget.cart);
+
+                    setState(() {
+                      _isLoading = false;
+                    });
+
+                    widget.cart.clear();
+                  },
+            style: TextButton.styleFrom(
+                textStyle: const TextStyle(
+              color: Colors.purple,
+            )),
+            child: const Text('COMPRAR'),
+          );
   }
 }
