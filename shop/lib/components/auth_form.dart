@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/auth.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -39,10 +41,10 @@ class _AuthFormState extends State<AuthForm> {
     });
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
     final isValid = _formKey.currentState?.validate() ?? false;
 
-    if(!isValid){
+    if (!isValid) {
       return;
     }
 
@@ -52,13 +54,19 @@ class _AuthFormState extends State<AuthForm> {
 
     _formKey.currentState?.save();
 
-    print(_authData);
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
+    if (_isLogin()) {
+    } else {
+      await auth.signup(
+        _authData['email']!,
+        _authData['password']!,
+      );
+    }
 
     setState(() {
       _isLoading = true;
     });
-
-
   }
 
   bool _isLogin() {
