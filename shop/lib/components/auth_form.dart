@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, prefer_final_fields
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
+import 'package:shop/models/auth_exception.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -41,6 +42,21 @@ class _AuthFormState extends State<AuthForm> {
     });
   }
 
+  void _showErrorDialogue(String msg) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+              title: const Text('Ocorreu um erro'),
+              content: Text(msg),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Fechar'),
+                )
+              ],
+            ));
+  }
+
   Future<void> _submitForm() async {
     final isValid = _formKey.currentState?.validate() ?? false;
 
@@ -56,17 +72,23 @@ class _AuthFormState extends State<AuthForm> {
 
     Auth auth = Provider.of<Auth>(context, listen: false);
 
-    if (_isLogin()) {
-    } else {
-      await auth.signup(
-        _authData['email']!,
-        _authData['password']!,
-      );
-    }
+    try {
+      if (_isLogin()) {
+        await auth.signin(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      } else {
+        await auth.signup(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      }
 
-    setState(() {
-      _isLoading = true;
-    });
+      setState(() {
+        _isLoading = true;
+      });
+    } on AuthException catch (err) {}
   }
 
   bool _isLogin() {
