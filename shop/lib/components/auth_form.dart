@@ -7,7 +7,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
-import 'package:shop/models/auth_exception.dart';
+import 'package:shop/exceptions/auth_exception.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -88,7 +88,16 @@ class _AuthFormState extends State<AuthForm> {
       setState(() {
         _isLoading = true;
       });
-    } on AuthException catch (err) {}
+    } on AuthException catch (err) {
+      _showErrorDialogue(err.toString());
+    } catch (err) {
+      _showErrorDialogue("Ocorreu um erro Inesperado");
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+    
   }
 
   bool _isLogin() {

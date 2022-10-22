@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
 import 'package:shop/models/order_list.dart';
+import 'package:shop/screens/auth_or_home_page.dart';
 import 'package:shop/screens/auth_page.dart';
 import 'package:shop/screens/orders_page.dart';
 import 'package:shop/screens/product_form_page.dart';
@@ -52,12 +53,10 @@ class MyApp extends StatelessWidget {
             ),
             fontFamily: 'Lato',
           ),
-          //home: AuthPage(),
           routes: { 
-            AppRoutes.HOME: (contexto) => ProductsOverviewPage(),
+            AppRoutes.AUTH_OR_HOME: (contexto) => AuthOrHomePage(),
             AppRoutes.PRODUCT_DETAIL: (contexto) => ProductDetailPage(),
             AppRoutes.CART: (contexto) => CartPage(),
-            AppRoutes.AUTH: (contexto) => AuthPage(),
             AppRoutes.ORDERS: (contexto) => OrdersPage(),
             AppRoutes.PRODUCTS: (contexto) => ProductsPage(),
             AppRoutes.PRODUCT_FORM: (contexto) => ProductFormPage(),
