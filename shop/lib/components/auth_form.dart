@@ -74,15 +74,24 @@ class _AuthFormState extends State<AuthForm> {
 
     try {
       if (_isLogin()) {
-        await auth.signin(
-          _authData['email']!,
+        await auth.authenticate(
+          _authData['email']!, 
           _authData['password']!,
+          'signInWithPassword'
+        // await auth.signin(
+        //   _authData['email']!,
+        //   _authData['password']!,
+        // );
         );
       } else {
-        await auth.signup(
-          _authData['email']!,
+        await auth.authenticate(
+          _authData['email']!, 
           _authData['password']!,
+          'signUp'
         );
+        // await auth.signup(
+        //   _authData['email']!,
+        //   _authData['password']!,
       }
 
       setState(() {

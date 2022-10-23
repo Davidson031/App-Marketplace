@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/auth.dart';
 import '../models/product.dart';
 import 'package:shop/components/product_grid_item.dart';
 import '../models/product_list.dart';
@@ -13,7 +14,7 @@ class ProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     ProductList providerListaDeProdutos = Provider.of<ProductList>(context);
     final List<Product> listDeProdutos = showFavoriteOnly ? providerListaDeProdutos.favoriteItems : providerListaDeProdutos.items;
 
