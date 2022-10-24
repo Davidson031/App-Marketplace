@@ -1,8 +1,11 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/utils/app_routes.dart';
+
+import '../models/auth.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -37,6 +40,15 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Produtos'),
             onTap: (){
               Navigator.of(context).pushReplacementNamed(AppRoutes.PRODUCTS);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: (){
+              Provider.of<Auth>(context, listen: false).logout();
+              Navigator.of(context).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
             },
           ),
         ],
