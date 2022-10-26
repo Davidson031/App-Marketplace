@@ -9,7 +9,12 @@ import '../models/order_list.dart';
 
 class OrdersPage extends StatelessWidget {
   @override
+
+
   Widget build(BuildContext context) {
+
+    final aaa = Provider.of<OrderList>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meus Pedidos'),
@@ -21,13 +26,19 @@ class OrdersPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            return Consumer<OrderList>(
-              builder: (ctx, orders, child) => ListView.builder(
-                itemCount: orders.itemsCount,
-                itemBuilder: (context, i) =>
-                    OrderWidget(order: orders.items[i]),
+            return ListView.builder(
+              itemCount: aaa.itemsCount,
+              itemBuilder: (context, index) => OrderWidget(
+                order: aaa.items[index],
               ),
             );
+            // return Consumer<OrderList>(
+            //   builder: (ctx, orders, child) => ListView.builder(
+            //     itemCount: orders.itemsCount,
+            //     itemBuilder: (context, i) =>
+            //         OrderWidget(order: orders.items[i]),
+            //   ),
+            // );
           }
         }),
       ),

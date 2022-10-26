@@ -24,10 +24,6 @@ class Auth with ChangeNotifier {
     return isAuthenticated ? _token : null;
   }
 
-  // String? get email {
-  //   return isAuthenticated ? _email : null;
-  // }
-
   String? get userId {
     return isAuthenticated ? _userId : null;
   }
@@ -118,11 +114,4 @@ class Auth with ChangeNotifier {
     _logoutTimer = Timer(Duration(seconds: timeToLogout ?? 0), logout);
   }
 
-  // Future<void> signup(String email, String password) async {
-  //   return _authenticate(email, password, 'signUp');
-  // }
-
-  // Future<void> signin(String email, String password) async {
-  //   return _authenticate(email, password, 'signInWithPassword');
-  // }
 }
