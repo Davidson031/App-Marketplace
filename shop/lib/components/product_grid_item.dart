@@ -13,11 +13,8 @@ import 'package:shop/utils/app_routes.dart';
 import '../models/cart.dart';
 
 class ProductGridItem extends StatelessWidget {
-
-  
   @override
   Widget build(BuildContext context) {
-    
     final auth = Provider.of<Auth>(context, listen: false);
     final product = Provider.of<Product>(context, listen: false);
     final carrinho = Provider.of<Cart>(context, listen: false);
@@ -69,9 +66,13 @@ class ProductGridItem extends StatelessWidget {
               arguments: product,
             );
           },
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
+          child: Hero(
+            tag: product.id,
+            child: FadeInImage(
+              placeholder: const AssetImage('assets/images/product-placeholder.png'),
+              image: NetworkImage(product.imageUrl),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

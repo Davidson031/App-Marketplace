@@ -7,6 +7,7 @@ import 'package:shop/screens/auth_page.dart';
 import 'package:shop/screens/orders_page.dart';
 import 'package:shop/screens/product_form_page.dart';
 import 'package:shop/screens/products_page.dart';
+import 'package:shop/utils/custom_route.dart';
 import 'models/cart.dart';
 import 'models/product_list.dart';
 import 'providers/counter.dart';
@@ -55,6 +56,11 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
+            pageTransitionsTheme: PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: CustomPageTransitionsBuilder()
+              },
+            ),
             colorScheme: ColorScheme.fromSwatch().copyWith(
               primary: Colors.purple,
               secondary: Colors.deepOrange,
